@@ -1,0 +1,146 @@
+body {
+    background-color: #121212;
+    color: #f8f9fa;
+}
+
+.fixed-section {
+    height: 100vh;
+    padding: 4rem;
+    background: #121212;
+    z-index: 1000;
+    overflow-y: auto;
+    /* Enable scrolling */
+    position: sticky;
+    /* Keep it fixed */
+    top: 0;
+
+}
+
+.scrollable-section {
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #121212;
+   
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: block;
+    background: #2a2a2a;
+}
+
+.social-icons a {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: #f8f9fa;
+    text-decoration: none;
+}
+
+.skill-item {
+    border-width: 2px;
+    border-style: solid;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    display: inline-block;
+    font-size: small;
+}
+
+.project-card {
+    border: 1px solid #333;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+
+}
+
+.btn-action {
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 5px;
+    text-decoration: none;
+    color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+}
+
+.btn1 {
+    width: 35%;
+    background-color: #007bff;
+    border: none;
+    padding: 10px;
+}
+
+
+
+.btn-action:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.languages .skill-item {
+    background: #042f5d;
+    border: none;
+    color: #007bff;
+}
+
+.frameworks .skill-item {
+    background-color: #0b4018;
+    color: #00ff3c;
+    border: none;
+}
+
+.backend .skill-item {
+    background-color: #48040b;
+    color: #ff0019;
+    border: none;
+}
+
+.database .skill-item {
+    background-color: #735808;
+    color: #ffbf00;
+    border: none;
+}
+
+.resume-social {
+    display: flex;
+    gap: 1rem;
+}
+
+.project-card+img {
+    width: 100%;
+    max-height: 400vh;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+.project-text .skill-item {
+    background-color: #0b4018;
+    color: #4aa960;
+    border: none;
+}
+
+@media (max-width: 576px) {
+    .fixed-section, .scrollable-section {
+        width: 100%;
+    }
+
+    .fixed-section {
+        position: static;
+        height: auto;
+        padding: 1rem;
+    }
+
+    .btn1 {
+        width: 50%;
+        background-color: #007bff;
+        border: none;
+    }
+
+    .Education-img{
+        height: 100px;
+        width: 150px;
+    }
+}
