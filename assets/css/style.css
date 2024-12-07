@@ -9,9 +9,7 @@ body {
     background: #121212;
     z-index: 1000;
     overflow-y: auto;
-    /* Enable scrolling */
     position: sticky;
-    /* Keep it fixed */
     top: 0;
 
 }
@@ -142,5 +140,23 @@ body {
     .Education-img{
         height: 100px;
         width: 150px;
+    }
+}
+
+@media (max-width: 1280px) {
+
+    .btn1 {
+        width: 50%;
+        background-color: #007bff;
+        border: none;
+    }
+
+    .Education-img{
+        height: 100px;
+        width: 150px;
+    }
+
+    .btn-action{
+        width: 40%;
     }
 }
