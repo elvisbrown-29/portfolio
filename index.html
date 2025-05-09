@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elvis Brown - Web Developer Portfolio</title>
+  <meta name="description"
+    content="Professional web developer specializing in full-stack development with HTML, CSS, JavaScript, PHP and SQL">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>tailwind.config = { theme: { extend: { colors: { primary: '#3b82f6', secondary: '#10b981' }, borderRadius: { 'none': '0px', 'sm': '4px', DEFAULT: '8px', 'md': '12px', 'lg': '16px', 'xl': '20px', '2xl': '24px', '3xl': '32px', 'full': '9999px', 'button': '8px' } } } }</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+  <style>
+    :where([class^="ri-"])::before {
+      content: "\f3c2";
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .hero-bg {
+      background-image: url('https://readdy.ai/api/search-image?query=modern%20abstract%20gradient%20background%20with%20blue%20and%20purple%20tones%2C%20soft%20geometric%20shapes%2C%20professional%20and%20clean%20design%2C%20perfect%20for%20web%20developer%20portfolio%20hero%20section%2C%20minimal%20style%20with%20space%20for%20text%20on%20the%20left%20side&width=1920&height=1080&seq=1&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .skill-circle {
+      width: 120px;
+      height: 120px;
+      position: relative;
+    }
+
+    .skill-circle-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .skill-progress {
+      stroke-dashoffset: calc(440 - (440 * var(--progress)) / 100);
+      transition: stroke-dashoffset 1s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      background: #3b82f6;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .nav-link.active {
+      color: #3b82f6;
+      font-weight: 500;
+    }
+
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.3s;
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .modal {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .text-shadow-white {
+      text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 w-full bg-white bg-opacity-95 shadow-sm z-50 px-4 md:px-6">
+    <div class="max-w-7xl mx-auto flex items-center justify-between h-16 md:h-20">
+      <a href="#" class="text-2xl font-['Pacifico'] text-primary">Elvis Brown</a>
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="nav-link text-gray-700 hover:text-primary transition-colors duration-300 active">Home</a>
+        <a href="#about" class="nav-link text-gray-700 hover:text-primary transition-colors duration-300">About</a>
+        <a href="#projects"
+          class="nav-link text-gray-700 hover:text-primary transition-colors duration-300">Projects</a>
+        <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
+      </div>
+      <div class="md:hidden">
+        <button id="menu-toggle" class="w-10 h-10 flex items-center justify-center text-gray-700">
+          <i class="ri-menu-line ri-lg"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="md:hidden hidden bg-white pb-4">
+      <div class="flex flex-col space-y-4 px-4">
+        <a href="#home" class="py-2 text-gray-700 hover:text-primary transition-colors duration-300">Home</a>
+        <a href="#about" class="py-2 text-gray-700 hover:text-primary transition-colors duration-300">About</a>
+        <a href="#projects" class="py-2 text-gray-700 hover:text-primary transition-colors duration-300">Projects</a>
+        <a href="#contact" class="py-2 text-gray-700 hover:text-primary transition-colors duration-300">Contact</a>
+      </div>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <section id="home" class="hero-bg min-h-screen flex flex-col md:flex-row items-center pt-16 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"></div>
+    <div class="absolute inset-0">
+      <div class="animate-float-1 absolute top-[10%] left-[5%] w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
+      <div class="animate-float-2 absolute top-[30%] right-[15%] w-32 h-32 bg-white/20 rounded-full blur-xl"></div>
+      <div class="animate-float-3 absolute bottom-[20%] left-[20%] w-40 h-40 bg-primary/10 rounded-full blur-xl"></div>
+    </div>
+    <div class="w-full max-w-7xl mx-auto px-4 md:px-6 relative">
+      <div class="w-full md:w-1/2 py-16 md:py-0 animate-fade-in">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+          <span class="block animate-slide-up opacity-0" style="animation-delay: 0.2s">Hi, I'm Elvis Brown</span>
+          <span class="block mt-2 text-primary animate-slide-up opacity-0 text-shadow-white"
+            style="animation-delay: 0.4s">Full-Stack
+            Developer</span>
+        </h1>
+        <p class="text-lg text-white/90 mb-8 max-w-lg animate-slide-up opacity-0" style="animation-delay: 0.6s">
+          I develop responsive websites and web applications that prioritize exceptional user experience, leveraging
+          expertise in both frontend and backend technologies to deliver robust, end-to-end digital solutions.
+        </p>
+        <div class="flex flex-wrap gap-4 animate-slide-up opacity-0" style="animation-delay: 0.8s">
+          <a href="#contact"
+            class="px-8 py-3 bg-primary text-white font-medium rounded-button transition-all duration-300 hover:bg-primary/90 hover:shadow-lg whitespace-nowrap hover:scale-105">
+            Hire Me
+          </a>
+          <a href="#projects"
+            class="px-8 py-3 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap hover:scale-105">
+            View My Work
+          </a>
+        </div>
+        <div class="flex items-center mt-12 space-x-4 animate-slide-up opacity-0" style="animation-delay: 1s">
+          <a href="https://github.com/elvisbrown-29"
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110">
+            <i class="ri-github-line"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/elvisbrown/"
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110">
+            <i class="ri-linkedin-line"></i>
+          </a>
+          <a href="https://wa.me/233599672113"
+            class="w-10 h-10 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-all duration-300 hover:scale-110">
+            <i class="ri-whatsapp-line"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="w-full md:w-1/2 px-4 md:px-6 mt-4 mt-4 md:mt-0 sm:mt-0">
+      <div class="rounded-lg overflow-hidden shadow-lg w-full max-w-md mx-auto animate-fade-in mt-4 mt-4 sm:mt-0">
+        <img
+          src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20male%20web%20developer%20in%20his%20early%2030s%20with%20short%20brown%20hair%20and%20friendly%20smile%2C%20wearing%20casual%20business%20attire%2C%20sitting%20at%20a%20modern%20desk%20with%20computer%20screens%20showing%20code%20in%20background%2C%20warm%20lighting%2C%20professional%20photography&width=600&height=800&seq=2&orientation=portrait"
+          alt="Elvis Brown" class="w-full h-auto object-cover">
+      </div>
+    </div>
+  </section>
+  <style>
+    @keyframes float-1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(20px, 20px) rotate(5deg);
+      }
+
+      50% {
+        transform: translate(-10px, 40px) rotate(-5deg);
+      }
+
+      75% {
+        transform: translate(-30px, 20px) rotate(3deg);
+      }
+    }
+
+    @keyframes float-2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(-20px, -15px) rotate(-3deg);
+      }
+
+      50% {
+        transform: translate(15px, -25px) rotate(5deg);
+      }
+
+      75% {
+        transform: translate(20px, -10px) rotate(-2deg);
+      }
+    }
+
+    @keyframes float-3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(15px, -20px) rotate(3deg);
+      }
+
+      50% {
+        transform: translate(-20px, -10px) rotate(-4deg);
+      }
+
+      75% {
+        transform: translate(-15px, -25px) rotate(2deg);
+      }
+    }
+
+    @keyframes slide-up {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .animate-float-1 {
+      animation: float-1 20s infinite ease-in-out;
+    }
+
+    .animate-float-2 {
+      animation: float-2 25s infinite ease-in-out;
+    }
+
+    .animate-float-3 {
+      animation: float-3 22s infinite ease-in-out;
+    }
+
+    .animate-slide-up {
+      animation: slide-up 0.8s forwards ease-out;
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1s forwards ease-out;
+    }
+  </style>
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+        <div class="w-20 h-1 bg-primary mx-auto"></div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-12 items-center">
+        <div class="w-full md:w-2/5">
+          <div class="rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20male%20web%20developer%20in%20his%20early%2030s%20with%20short%20brown%20hair%20and%20friendly%20smile%2C%20wearing%20casual%20business%20attire%2C%20sitting%20at%20a%20modern%20desk%20with%20computer%20screens%20showing%20code%20in%20background%2C%20warm%20lighting%2C%20professional%20photography&width=600&height=800&seq=2&orientation=portrait"
+              alt="Elvis Brown" class="w-full h-auto object-cover">
+          </div>
+        </div>
+        <div class="w-full md:w-3/5">
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">Who I Am</h3>
+          <p class="text-gray-600 mb-6">
+            I'm a passionate Full-Stack Web Developer with 2+ years of experience building web applications and
+            websites. Based in Bibiani, I combine technical expertise with creative problem-solving to deliver
+            high-quality digital solutions.
+          </p>
+          <p class="text-gray-600 mb-8">
+            My journey in web development began during my Information Systems and Technology studies at University of
+            Mines and Technology. Since then, I've
+            worked with startups and established companies to create responsive, user-friendly web experiences that
+            drive business growth.
+          </p>
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">My Skills</h3>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+              <div class="skill-circle mx-auto">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" stroke-width="12"
+                    stroke-dasharray="339.292" stroke-dashoffset="33.9292" style="--progress: 90"
+                    class="skill-progress" />
+                </svg>
+                <div class="skill-circle-inner">
+                  <div class="w-8 h-8 flex items-center justify-center text-primary mb-1">
+                    HTML
+                    <i class="ri-html5-line ri-lg"></i>
+                  </div>
+                  <span class="text-lg font-semibold">90%</span>
+                </div>
+              </div>
+              <div class="skill-circle mx-auto">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" stroke-width="12"
+                    stroke-dasharray="339.292" stroke-dashoffset="67.8584" style="--progress: 80"
+                    class="skill-progress" />
+                </svg>
+                <div class="skill-circle-inner">
+                  <div class="w-8 h-8 flex items-center justify-center text-primary mb-1">
+                    CSS
+                    <i class="ri-css3-line ri-lg"></i>
+                  </div>
+                  <span class="text-lg font-semibold">80%</span>
+                </div>
+              </div>
+              <div class="skill-circle mx-auto">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" stroke-width="12"
+                    stroke-dasharray="339.292" stroke-dashoffset="84.823" style="--progress: 75"
+                    class="skill-progress" />
+                </svg>
+                <div class="skill-circle-inner">
+                  <div class="w-8 h-8 flex items-center justify-center text-primary mb-1">
+                    JS
+                    <i class="ri-javascript-line ri-lg"></i>
+                  </div>
+                  <span class="text-lg font-semibold">75%</span>
+                </div>
+              </div>
+              <div class="skill-circle mx-auto">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" stroke-width="12"
+                    stroke-dasharray="339.292" stroke-dashoffset="101.7876" style="--progress: 70"
+                    class="skill-progress" />
+                </svg>
+                <div class="skill-circle-inner">
+                  <div class="w-8 h-8 flex items-center justify-center text-primary mb-1">
+                    <span class="text-shadow-white">Bootstrap</span>
+                    <i class="ri-bootstrap-line ri-lg"></i>
+                  </div>
+                  <span class="text-lg font-semibold">70%</span>
+                </div>
+              </div>
+              <div class="skill-circle mx-auto">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" stroke-width="12"
+                    stroke-dasharray="339.292" stroke-dashoffset="84.823" style="--progress: 75"
+                    class="skill-progress" />
+                </svg>
+                <div class="skill-circle-inner">
+                  <div class="w-8 h-8 flex items-center justify-center text-primary mb-1">
+                    PHP
+                    <i class="ri-php-line ri-lg"></i>
+                  </div>
+                  <span class="text-lg font-semibold">75%</span>
+                </div>
+              </div>
+              <div class="skill-circle mx-auto">
+                <svg width="120" height="120" viewBox="0 0 120 120">
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#e6e6e6" stroke-width="12" />
+                  <circle cx="60" cy="60" r="54" fill="none" stroke="#3b82f6" stroke-width="12"
+                    stroke-dasharray="339.292" stroke-dashoffset="84.823" style="--progress: 75"
+                    class="skill-progress" />
+                </svg>
+                <div class="skill-circle-inner">
+                  <div class="w-8 h-8 flex items-center justify-center text-primary mb-1">
+                    SQL
+                    <i class="ri-database-2-line ri-lg"></i>
+                  </div>
+                  <span class="text-lg font-semibold">75%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="#"
+            class="px-8 py-3 bg-primary text-white font-medium rounded-button transition-all duration-300 hover:bg-primary/90 hover:shadow-lg inline-flex items-center whitespace-nowrap">
+            <i class="ri-download-line mr-2"></i> Download Resume
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">My Projects</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Here are some of my recent projects showcasing my skills and expertise in web development.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1 -->
+        <div
+          class="project-card bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
+          <div class="relative">
+            <img
+              src="https://readdy.ai/api/search-image?query=e-commerce%20website%20dashboard%20interface%20with%20product%20listings%2C%20modern%20UI%20design%2C%20clean%20layout%20with%20blue%20and%20white%20color%20scheme%2C%20professional%20web%20application%20screenshot&width=600&height=400&seq=3&orientation=landscape"
+              alt="E-commerce Platform" class="w-full h-64 object-cover object-top">
+            <div
+              class="project-overlay absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button
+                class="view-project-btn px-6 py-2 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap"
+                data-project="1">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">E-commerce Platform</h3>
+            <p class="text-gray-600 mb-4">
+              A full-featured online store with product management, cart functionality, and secure checkout.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2 -->
+        <div
+          class="project-card bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
+          <div class="relative">
+            <img
+              src="https://readdy.ai/api/search-image?query=task%20management%20application%20interface%20with%20kanban%20board%2C%20task%20cards%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=600&height=400&seq=4&orientation=landscape"
+              alt="Task Management App" class="w-full h-64 object-cover object-top">
+            <div
+              class="project-overlay absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button
+                class="view-project-btn px-6 py-2 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap"
+                data-project="2">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Task Management App</h3>
+            <p class="text-gray-600 mb-4">
+              A Kanban-style project management tool with drag-and-drop interface and team collaboration features.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3 -->
+        <div
+          class="project-card bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
+          <div class="relative">
+            <img
+              src="https://readdy.ai/api/search-image?query=real%20estate%20website%20interface%20showing%20property%20listings%20with%20images%20and%20details%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=600&height=400&seq=5&orientation=landscape"
+              alt="Real Estate Portal" class="w-full h-64 object-cover object-top">
+            <div
+              class="project-overlay absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button
+                class="view-project-btn px-6 py-2 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap"
+                data-project="3">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Real Estate Portal</h3>
+            <p class="text-gray-600 mb-4">
+              A property listing website with advanced search, filtering options, and interactive maps.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Bootstrap</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 4 -->
+        <div
+          class="project-card bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
+          <div class="relative">
+            <img
+              src="https://readdy.ai/api/search-image?query=fitness%20tracking%20application%20interface%20with%20workout%20logs%2C%20progress%20charts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=600&height=400&seq=6&orientation=landscape"
+              alt="Fitness Tracker" class="w-full h-64 object-cover object-top">
+            <div
+              class="project-overlay absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button
+                class="view-project-btn px-6 py-2 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap"
+                data-project="4">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Fitness Tracker</h3>
+            <p class="text-gray-600 mb-4">
+              A workout tracking application with progress visualization, goal setting, and personalized
+              recommendations.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Chart.js</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 5 -->
+        <div
+          class="project-card bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
+          <div class="relative">
+            <img
+              src="https://readdy.ai/api/search-image?query=blog%20website%20interface%20with%20article%20listings%2C%20featured%20posts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=600&height=400&seq=7&orientation=landscape"
+              alt="Blog Platform" class="w-full h-64 object-cover object-top">
+            <div
+              class="project-overlay absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button
+                class="view-project-btn px-6 py-2 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap"
+                data-project="5">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Blog Platform</h3>
+            <p class="text-gray-600 mb-4">
+              A content management system for bloggers with rich text editor, categories, and comment system.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">Bootstrap</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">PHP</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">MySQL</span>
+            </div>
+          </div>
+        </div>
+        <!-- Project 6 -->
+        <div
+          class="project-card bg-white rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:shadow-xl hover:-translate-y-2">
+          <div class="relative">
+            <img
+              src="https://readdy.ai/api/search-image?query=weather%20application%20interface%20showing%20forecast%20data%2C%20temperature%20charts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=600&height=400&seq=8&orientation=landscape"
+              alt="Weather App" class="w-full h-64 object-cover object-top">
+            <div
+              class="project-overlay absolute inset-0 bg-primary/80 opacity-0 transition-opacity duration-300 flex items-center justify-center">
+              <button
+                class="view-project-btn px-6 py-2 bg-white text-primary font-medium rounded-button transition-all duration-300 hover:bg-gray-100 whitespace-nowrap"
+                data-project="6">
+                View Details
+              </button>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Weather App</h3>
+            <p class="text-gray-600 mb-4">
+              A weather forecast application with location-based data, 7-day predictions, and interactive charts.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">HTML</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">CSS</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">JavaScript</span>
+              <span class="px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm">API Integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Stats Section -->
+  <section class="py-16 bg-primary text-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-9 text-center">
+        <div class="p-6">
+          <div class="text-4xl font-bold mb-2">12+</div>
+          <div class="text-lg font-medium">Projects Completed</div>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold mb-2">5</div>
+          <div class="text-lg font-medium">Happy Clients</div>
+        </div>
+        <div class="p-6">
+          <div class="text-4xl font-bold mb-2">2+</div>
+          <div class="text-lg font-medium">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">Get In Touch</h2>
+        <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Have a project in mind or want to discuss potential opportunities? Feel free to contact me.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div>
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-primary mr-4">
+                  <i class="ri-map-pin-line"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-800">Location</h4>
+                  <p class="text-gray-600">Bibiani, Western North Region, Ghana </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-primary mr-4">
+                  <i class="ri-mail-line"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-800">Email</h4>
+                  <p class="text-gray-600">elsbee29@gmail.com</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 text-primary mr-4">
+                  <i class="ri-phone-line"></i>
+                </div>
+                <div>
+                  <h4 class="text-lg font-medium text-gray-800">Phone</h4>
+                  <p class="text-gray-600">+233599672113</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-semibold text-gray-800 mb-6">Follow Me</h3>
+            <div class="flex space-x-4">
+              <a href="https://github.com/elvisbrown-29"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors duration-300">
+                <i class="ri-github-fill ri-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/elvisbrown/"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors duration-300">
+                <i class="ri-linkedin-fill ri-lg"></i>
+              </a>
+              <a href="https://www.youtube.com/@BrownTech-29"
+                class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 hover:bg-primary hover:text-white transition-colors duration-300">
+                <i class="ri-youtube-fill ri-lg"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form id="contact-form" action="https://formspree.io/f/mnndvepk" method="POST" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="relative">
+                <input type="text" id="name" name="name"
+                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 text-gray-800"
+                  placeholder="Your Name" required>
+              </div>
+              <div class="relative">
+                <input type="email" id="email" name="email"
+                  class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 text-gray-800"
+                  placeholder="Your Email" required>
+              </div>
+            </div>
+            <div class="relative">
+              <input type="text" id="subject" name="subject"
+                class="w-full px-4 py-3 border border-gray-300 rounded focus:ring-2 focus:ring-primary/20 text-gray-800"
+                placeholder="Subject" required>
+            </div>
+            <div class="relative">
+              <textarea id="message" name="message" rows="5"
+                class="w-full px-4 py-3 border border-gray-300 rounded resize-none focus:ring-2 focus:ring-primary/20 text-gray-800"
+                placeholder="Your Message" required></textarea>
+            </div>
+            <input type="hidden" name="_subject" value="New message from portfolio website">
+            <input type="text" name="_gotcha" style="display:none">
+            <div class="flex items-center">
+              <button type="submit" id="submit-btn"
+                class="px-8 py-3 bg-primary text-white font-medium rounded-button transition-all duration-300 hover:bg-primary/90 hover:shadow-lg whitespace-nowrap">
+                Send Message
+              </button>
+              <div id="form-status" class="ml-4 hidden"></div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 md:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div>
+          <a href="#" class="text-2xl font-['Pacifico'] text-white mb-4 inline-block">Elvis Brown</a>
+          <p class="text-gray-400 mb-6">
+            Creating exceptional web experiences with a focus on performance, usability, and visual appeal.
+          </p>
+          <div class="flex space-x-4">
+            <a href="https://github.com/elvisbrown-29"
+              class="text-gray-400 hover:text-white transition-colors duration-300">
+              <i class="ri-github-fill ri-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/elvisbrown/"
+              class="text-gray-400 hover:text-white transition-colors duration-300">
+              <i class="ri-linkedin-fill ri-lg"></i>
+            </a>
+            <a href="https://wa.me/233599672113" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <i class="ri-whatsapp-fill ri-lg"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+            <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a>
+            </li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4">Newsletter</h3>
+          <p class="text-gray-400 mb-4">
+            Subscribe to receive updates on my latest projects and tech articles.
+          </p>
+          <form id="newsletter-form" action="https://your-mailchimp-signup-url.com" method="POST" class="flex">
+            <input type="email" name="EMAIL" placeholder="Your email" required
+              class="px-4 py-2 w-full border-none bg-gray-800 text-white rounded-l focus:outline-none">
+            <!-- Mailchimp required fields -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+              <input type="text" name="b_xxxxxx_xxxxxx" tabindex="-1" value="">
+            </div>
+            <button type="submit" id="newsletter-btn"
+              class="px-4 py-2 bg-primary text-white rounded-r hover:bg-primary/90 transition-colors duration-300 whitespace-nowrap !rounded-button">
+              Subscribe
+            </button>
+          </form>
+          <div id="newsletter-status" class="mt-2 text-sm hidden"></div>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400">
+          &copy; 2025 Elvis Brown. All rights reserved.
+        </p>
+        <div class="mt-4 md:mt-0">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 mx-2">Privacy Policy</a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 mx-2">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Back to Top Button -->
+  <button id="back-to-top"
+    class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-primary text-white shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+    <i class="ri-arrow-up-line ri-lg"></i>
+  </button>
+  <!-- Project Modal -->
+  <div id="project-modal"
+    class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/70 opacity-0 invisible transition-all duration-300">
+    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-4">
+      <div class="flex justify-between items-center p-6 border-b">
+        <h3 id="modal-title" class="text-2xl font-semibold text-gray-800"></h3>
+        <button id="close-modal" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700">
+          <i class="ri-close-line ri-lg"></i>
+        </button>
+      </div>
+      <div class="p-6">
+        <div id="modal-image" class="mb-6 rounded-lg overflow-hidden">
+          <img src="" alt="" class="w-full h-auto">
+        </div>
+        <div class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Project Description</h4>
+          <p id="modal-description" class="text-gray-600"></p>
+        </div>
+        <div class="mb-6">
+          <h4 class="text-lg font-semibold text-gray-800 mb-2">Technologies Used</h4>
+          <div id="modal-technologies" class="flex flex-wrap gap-2"></div>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" id="modal-live-link" target="_blank"
+            class="px-6 py-2 bg-primary text-white font-medium rounded-button transition-all duration-300 hover:bg-primary/90 whitespace-nowrap"
+            onclick="handleLiveDemo(event)">
+            <i class="ri-external-link-line mr-1"></i> Live Demo
+          </a>
+          <a href="#" id="modal-github-link" target="_blank"
+            class="px-6 py-2 bg-gray-200 text-gray-800 font-medium rounded-button transition-all duration-300 hover:bg-gray-300 whitespace-nowrap">
+            <i class="ri-github-line mr-1"></i> View Code
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 opacity-0 invisible transition-all duration-300">
+    <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 relative">
+      <div class="text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <i class="ri-check-line ri-2x text-green-500"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Message Sent!</h3>
+        <p class="text-gray-600 mb-6">
+          Thank you for reaching out. I'll get back to you as soon as possible.
+        </p>
+        <button id="success-modal-close" class="px-6 py-2 bg-primary text-white font-medium rounded-button transition-all duration-300 hover:bg-primary/90">
+          Okay!
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Mobile menu toggle
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuToggle.addEventListener('click', function () {
+        mobileMenu.classList.toggle('hidden');
+        if (menuToggle.querySelector('i').classList.contains('ri-menu-line')) {
+          menuToggle.querySelector('i').classList.replace('ri-menu-line', 'ri-close-line');
+        } else {
+          menuToggle.querySelector('i').classList.replace('ri-close-line', 'ri-menu-line');
+        }
+      });
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            if (!mobileMenu.classList.contains('hidden')) {
+              mobileMenu.classList.add('hidden');
+              menuToggle.querySelector('i').classList.replace('ri-close-line', 'ri-menu-line');
+            }
+          }
+        });
+      });
+      // Back to top button
+      const backToTopButton = document.getElementById('back-to-top');
+      window.addEventListener('scroll', function () {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.remove('opacity-0', 'invisible');
+          backToTopButton.classList.add('opacity-100', 'visible');
+        } else {
+          backToTopButton.classList.remove('opacity-100', 'visible');
+          backToTopButton.classList.add('opacity-0', 'invisible');
+        }
+      });
+      backToTopButton.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+      // Active navigation link highlighting
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+      window.addEventListener('scroll', function () {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      // Project modal functionality
+      const projectModal = document.getElementById('project-modal');
+      const closeModal = document.getElementById('close-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalImage = document.getElementById('modal-image').querySelector('img');
+      const modalDescription = document.getElementById('modal-description');
+      const modalTechnologies = document.getElementById('modal-technologies');
+      const modalLiveLink = document.getElementById('modal-live-link');
+      const modalGithubLink = document.getElementById('modal-github-link');
+      // Project data
+      const projects = {
+        1: {
+          title: 'E-commerce Platform',
+          image: 'https://readdy.ai/api/search-image?query=e-commerce%20website%20dashboard%20interface%20with%20product%20listings%2C%20modern%20UI%20design%2C%20clean%20layout%20with%20blue%20and%20white%20color%20scheme%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=9&orientation=landscape',
+          description: 'A comprehensive e-commerce solution built from the ground up. This platform includes product management, user authentication, shopping cart functionality, secure payment processing, and order tracking. The admin dashboard provides detailed analytics and inventory management capabilities. The frontend is optimized for both desktop and mobile devices, ensuring a seamless shopping experience across all platforms.',
+          technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'Bootstrap', 'jQuery', 'Stripe API'],
+          liveLink: 'https://ecommerce-demo.example.com',
+          demoAvailable: false,
+          githubLink: '#'
+        },
+        2: {
+          title: 'Task Management App',
+          image: 'https://readdy.ai/api/search-image?query=task%20management%20application%20interface%20with%20kanban%20board%2C%20task%20cards%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=10&orientation=landscape',
+          description: 'A Kanban-style project management application designed for team collaboration. Features include drag-and-drop task organization, deadline tracking, task assignment, file attachments, and real-time updates. The app includes customizable boards and lists, allowing teams to adapt the workflow to their specific needs. Email notifications keep team members informed about task updates and approaching deadlines.',
+          technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'AJAX', 'Drag & Drop API'],
+          liveLink: '#',
+          githubLink: '#'
+        },
+        3: {
+          title: 'Real Estate Portal',
+          image: 'https://readdy.ai/api/search-image?query=real%20estate%20website%20interface%20showing%20property%20listings%20with%20images%20and%20details%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=11&orientation=landscape',
+          description: 'A property listing website with advanced search functionality and interactive maps. Users can filter properties by location, price range, property type, and amenities. Each listing includes high-quality images, detailed descriptions, and virtual tours. The platform connects potential buyers with agents through an integrated messaging system. For property owners, the site offers an easy listing submission process with analytics on viewer engagement.',
+          technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'Google Maps API'],
+          liveLink: '#',
+          githubLink: '#'
+        },
+        4: {
+          title: 'Fitness Tracker',
+          image: 'https://readdy.ai/api/search-image?query=fitness%20tracking%20application%20interface%20with%20workout%20logs%2C%20progress%20charts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=12&orientation=landscape',
+          description: 'A comprehensive fitness tracking application that helps users monitor their workout routines and track progress over time. The app includes workout templates, custom exercise creation, progress visualization through interactive charts, and goal setting features. Users can log their daily activities, track nutritional intake, and receive personalized workout recommendations based on their fitness goals and progress.',
+          technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'Chart.js', 'Progressive Web App'],
+          liveLink: '#',
+          githubLink: '#'
+        },
+        5: {
+          title: 'Blog Platform',
+          image: 'https://readdy.ai/api/search-image?query=blog%20website%20interface%20with%20article%20listings%2C%20featured%20posts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=13&orientation=landscape',
+          description: 'A content management system designed specifically for bloggers and content creators. The platform features a rich text editor with markdown support, image optimization, category and tag organization, and SEO tools. The commenting system includes moderation capabilities and spam protection. The responsive design ensures that content looks great on all devices, and the built-in analytics help authors understand reader engagement.',
+          technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'TinyMCE'],
+          liveLink: '#',
+          githubLink: '#'
+        },
+        6: {
+          title: 'Weather App',
+          image: 'https://readdy.ai/api/search-image?query=weather%20application%20interface%20showing%20forecast%20data%2C%20temperature%20charts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=14&orientation=landscape',
+          description: 'A weather forecast application that provides real-time weather data and predictions for locations worldwide. The app features current conditions, hourly forecasts, and 7-day predictions with detailed information on temperature, precipitation, wind, and humidity. Interactive charts visualize weather trends, and users can save favorite locations for quick access. The app also includes severe weather alerts and notifications for significant changes in forecast.',
+          technologies: ['HTML', 'CSS', 'JavaScript', 'API Integration', 'Chart.js', 'Geolocation API'],
+          liveLink: '#',
+          githubLink: '#'
+        }
+      };
+      // Open modal when clicking on project
+      document.querySelectorAll('.view-project-btn').forEach(button => {
+        button.addEventListener('click', function () {
+          const projectId = this.getAttribute('data-project');
+          const project = projects[projectId];
+          modalTitle.textContent = project.title;
+          modalImage.src = project.image;
+          modalImage.alt = project.title;
+          modalDescription.textContent = project.description;
+          modalTechnologies.innerHTML = '';
+          project.technologies.forEach(tech => {
+            const techSpan = document.createElement('span');
+            techSpan.className = 'px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm';
+            techSpan.textContent = tech;
+            modalTechnologies.appendChild(techSpan);
+          });
+          modalLiveLink.href = project.liveLink;
+          modalLiveLink.setAttribute('data-project-id', projectId);
+          modalGithubLink.href = project.githubLink;
+          projectModal.classList.remove('opacity-0', 'invisible');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+      // Close modal
+      closeModal.addEventListener('click', function () {
+        projectModal.classList.add('opacity-0', 'invisible');
+        document.body.style.overflow = '';
+      });
+      // Close modal when clicking outside
+      projectModal.addEventListener('click', function (e) {
+        if (e.target === projectModal) {
+          projectModal.classList.add('opacity-0', 'invisible');
+          document.body.style.overflow = '';
+        }
+      });
+      // Escape key to close modal
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !projectModal.classList.contains('invisible')) {
+          projectModal.classList.add('opacity-0', 'invisible');
+          document.body.style.overflow = '';
+        }
+      });
+    });
+    document.addEventListener('DOMContentLoaded', function () {
+      // Contact form handling
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('submit-btn');
+      const formStatus = document.getElementById('form-status');
+      const successModal = document.getElementById('success-modal');
+      const successModalClose = document.getElementById('success-modal-close');
+
+      // Close success modal when clicking the Okay button
+      successModalClose.addEventListener('click', function() {
+        successModal.classList.add('opacity-0', 'invisible');
+        document.body.style.overflow = '';
+      });
+
+      // Close modal when clicking outside
+      successModal.addEventListener('click', function(e) {
+        if (e.target === successModal) {
+          successModal.classList.add('opacity-0', 'invisible');
+          document.body.style.overflow = '';
+        }
+      });
+
+      contactForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i> Sending...';
+        formStatus.classList.add('hidden');
+        
+        // Collect form data
+        const formData = new FormData(contactForm);
+        
+        // Send form data to Formspree
+        fetch('https://formspree.io/f/mnndvepk', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          // Show success modal
+          successModal.classList.remove('opacity-0', 'invisible');
+          document.body.style.overflow = 'hidden';
+          
+          // Reset form
+          contactForm.reset();
+        })
+        .catch(error => {
+          // Show error message
+          formStatus.classList.remove('hidden');
+          formStatus.className = 'ml-4 text-red-600';
+          formStatus.innerHTML = '<i class="ri-error-warning-line mr-1"></i> Failed to send message. Please try again.';
+        })
+        .finally(() => {
+          // Reset button
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = 'Send Message';
+        });
+      });
+      // Form validation
+      const inputs = contactForm.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('invalid', function (e) {
+          e.preventDefault();
+          this.classList.add('border-red-500');
+        });
+        input.addEventListener('focus', function () {
+          this.classList.remove('border-red-500');
+        });
+      });
+    });
+    // Handle Live Demo button click
+    const projects = {
+      1: {
+        title: 'E-commerce Platform',
+        image: 'https://readdy.ai/api/search-image?query=e-commerce%20website%20dashboard%20interface%20with%20product%20listings%2C%20modern%20UI%20design%2C%20clean%20layout%20with%20blue%20and%20white%20color%20scheme%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=9&orientation=landscape',
+        description: 'A comprehensive e-commerce solution built from the ground up. This platform includes product management, user authentication, shopping cart functionality, secure payment processing, and order tracking. The admin dashboard provides detailed analytics and inventory management capabilities. The frontend is optimized for both desktop and mobile devices, ensuring a seamless shopping experience across all platforms.',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'Bootstrap', 'jQuery', 'Stripe API'],
+        liveLink: 'https://ecommerce-demo.example.com',
+        demoAvailable: false,
+        githubLink: '#'
+      },
+      2: {
+        title: 'Task Management App',
+        image: 'https://readdy.ai/api/search-image?query=task%20management%20application%20interface%20with%20kanban%20board%2C%20task%20cards%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=10&orientation=landscape',
+        description: 'A Kanban-style project management application designed for team collaboration. Features include drag-and-drop task organization, deadline tracking, task assignment, file attachments, and real-time updates. The app includes customizable boards and lists, allowing teams to adapt the workflow to their specific needs. Email notifications keep team members informed about task updates and approaching deadlines.',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'AJAX', 'Drag & Drop API'],
+        liveLink: '#',
+        demoAvailable: false,
+        githubLink: '#'
+      },
+      3: {
+        title: 'Real Estate Portal',
+        image: 'https://readdy.ai/api/search-image?query=real%20estate%20website%20interface%20showing%20property%20listings%20with%20images%20and%20details%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=11&orientation=landscape',
+        description: 'A property listing website with advanced search functionality and interactive maps. Users can filter properties by location, price range, property type, and amenities. Each listing includes high-quality images, detailed descriptions, and virtual tours. The platform connects potential buyers with agents through an integrated messaging system. For property owners, the site offers an easy listing submission process with analytics on viewer engagement.',
+        technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'Google Maps API'],
+        liveLink: '#',
+        demoAvailable: false,
+        githubLink: '#'
+      },
+      4: {
+        title: 'Fitness Tracker',
+        image: 'https://readdy.ai/api/search-image?query=fitness%20tracking%20application%20interface%20with%20workout%20logs%2C%20progress%20charts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=12&orientation=landscape',
+        description: 'A comprehensive fitness tracking application that helps users monitor their workout routines and track progress over time. The app includes workout templates, custom exercise creation, progress visualization through interactive charts, and goal setting features. Users can log their daily activities, track nutritional intake, and receive personalized workout recommendations based on their fitness goals and progress.',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'Chart.js', 'Progressive Web App'],
+        liveLink: '#',
+        demoAvailable: false,
+        githubLink: '#'
+      },
+      5: {
+        title: 'Blog Platform',
+        image: 'https://readdy.ai/api/search-image?query=blog%20website%20interface%20with%20article%20listings%2C%20featured%20posts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=13&orientation=landscape',
+        description: 'A content management system designed specifically for bloggers and content creators. The platform features a rich text editor with markdown support, image optimization, category and tag organization, and SEO tools. The commenting system includes moderation capabilities and spam protection. The responsive design ensures that content looks great on all devices, and the built-in analytics help authors understand reader engagement.',
+        technologies: ['HTML', 'CSS', 'Bootstrap', 'JavaScript', 'PHP', 'MySQL', 'TinyMCE'],
+        liveLink: '#',
+        demoAvailable: false,
+        githubLink: '#'
+      },
+      6: {
+        title: 'Weather App',
+        image: 'https://readdy.ai/api/search-image?query=weather%20application%20interface%20showing%20forecast%20data%2C%20temperature%20charts%2C%20modern%20UI%20design%20with%20blue%20accent%20colors%2C%20clean%20layout%2C%20professional%20web%20application%20screenshot&width=800&height=500&seq=14&orientation=landscape',
+        description: 'A weather forecast application that provides real-time weather data and predictions for locations worldwide. The app features current conditions, hourly forecasts, and 7-day predictions with detailed information on temperature, precipitation, wind, and humidity. Interactive charts visualize weather trends, and users can save favorite locations for quick access. The app also includes severe weather alerts and notifications for significant changes in forecast.',
+        technologies: ['HTML', 'CSS', 'JavaScript', 'API Integration', 'Chart.js', 'Geolocation API'],
+        liveLink: '#',
+        demoAvailable: false,
+        githubLink: '#'
+      }
+    };
+    function handleLiveDemo(event) {
+      event.preventDefault();
+      const modalLiveLink = document.getElementById('modal-live-link');
+      const projectId = modalLiveLink.getAttribute('data-project-id');
+      if (!projectId || !projects[projectId]) {
+        console.error('Project ID not found');
+        return;
+      }
+      const project = projects[projectId];
+      if (!project.demoAvailable) {
+        // Remove any existing demo modal
+        const existingModal = document.getElementById('demo-modal');
+        if (existingModal) {
+          existingModal.remove();
+        }
+        // Create and show modal
+        const demoModal = document.createElement('div');
+        demoModal.id = 'demo-modal';
+        demoModal.className = 'fixed inset-0 z-[60] flex items-center justify-center bg-black/70';
+        demoModal.innerHTML = `
+<div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 relative">
+<button id="close-demo-modal" class="absolute right-4 top-4 text-gray-500 hover:text-gray-700">
+<i class="ri-close-line ri-lg"></i>
+</button>
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+<i class="ri-tools-line ri-2x text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-gray-800 mb-2">Demo Coming Soon</h3>
+<p class="text-gray-600 mb-6">
+The live demo for ${project.title} is currently under maintenance. Please check back later or contact me for more information.
+</p>
+<button id="got-it-btn" class="px-6 py-2 bg-primary text-white font-medium rounded-button transition-all duration-300 hover:bg-primary/90">
+Got it
+</button>
+</div>
+</div>
+`;
+        document.body.appendChild(demoModal);
+        // Add event listeners for closing the modal
+        const closeBtn = document.getElementById('close-demo-modal');
+        const gotItBtn = document.getElementById('got-it-btn');
+        const modal = document.getElementById('demo-modal');
+        const closeModal = () => {
+          modal.remove();
+        };
+        closeBtn.addEventListener('click', closeModal);
+        gotItBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            closeModal();
+          }
+        });
+      } else {
+        if (project.liveLink && project.liveLink !== '#') {
+          window.open(project.liveLink, '_blank');
+        }
+      }
+    }
+    // Newsletter form handling
+    const newsletterForm = document.getElementById('newsletter-form');
+    const newsletterBtn = document.getElementById('newsletter-btn');
+    const newsletterStatus = document.getElementById('newsletter-status');
+
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show loading state
+        newsletterBtn.disabled = true;
+        const originalBtnText = newsletterBtn.innerHTML;
+        newsletterBtn.innerHTML = '<i class="ri-loader-4-line animate-spin"></i>';
+        newsletterStatus.classList.add('hidden');
+        
+        // Collect form data
+        const formData = new FormData(newsletterForm);
+        
+        // Send form data to Formspree
+        fetch('https://formspree.io/f/mnndvepk', {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Network response was not ok.');
+        })
+        .then(data => {
+          // Show success message
+          newsletterStatus.classList.remove('hidden');
+          newsletterStatus.className = 'mt-2 text-sm text-green-400';
+          newsletterStatus.innerHTML = '<i class="ri-check-line mr-1"></i> Thanks for subscribing!';
+          
+          // Reset form
+          newsletterForm.reset();
+        })
+        .catch(error => {
+          // Show error message
+          newsletterStatus.classList.remove('hidden');
+          newsletterStatus.className = 'mt-2 text-sm text-red-400';
+          newsletterStatus.innerHTML = '<i class="ri-error-warning-line mr-1"></i> Subscription failed. Please try again.';
+        })
+        .finally(() => {
+          // Reset button
+          newsletterBtn.disabled = false;
+          newsletterBtn.innerHTML = originalBtnText;
+        });
+      });
+    }
+  </script>
+</body>
+
+<!-- Remove this line completely -->
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function (e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // Disable keyboard shortcuts
+    document.addEventListener('keydown', function (e) {
+      // Disable F12 key (Developer Tools)
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+
+      // Disable Ctrl+Shift+I (Developer Tools)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Disable Ctrl+Shift+J (Developer Tools)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Disable Ctrl+Shift+C (Developer Tools)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Disable Ctrl+U (View Source)
+      if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+        return false;
+      }
+
+      // Disable Ctrl+S (Save Page)
+      if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Additional protection against DevTools
+    function detectDevTools() {
+      const widthThreshold = window.outerWidth - window.innerWidth > 160;
+      const heightThreshold = window.outerHeight - window.innerHeight > 160;
+      
+      if (widthThreshold || heightThreshold) {
+        // DevTools is likely open
+        document.body.innerHTML = 'Developer tools detected. This action is not allowed.';
+      }
+    }
+
+    // Check periodically
+    setInterval(detectDevTools, 1000);
+
+    // Check on resize (which happens when dev tools are opened)
+    window.addEventListener('resize', detectDevTools);
+
+    // Disable console methods
+    const disableConsole = function() {
+      // Store original console methods
+      const originalConsole = {
+        log: console.log,
+        info: console.info,
+        warn: console.warn,
+        error: console.error,
+        debug: console.debug
+      };
+
+      // Override console methods
+      console.log = console.info = console.warn = console.error = console.debug = function() {
+        // Optional: You can log attempts to use console
+        // originalConsole.warn('Console usage detected');
+      };
+    };
+
+    // Execute console disabling
+    disableConsole();
+
+    // Detect if DevTools is open via debugger
+    function detectDebugger() {
+      const start = new Date().getTime();
+      debugger;
+      const end = new Date().getTime();
+      
+      if (end - start > 100) {
+        // Debugger was likely opened and paused execution
+        document.body.innerHTML = 'Debugging is not allowed on this site.';
+      }
+    }
+
+    // Run debugger detection periodically
+    setInterval(detectDebugger, 1000);
+  });
+</script>
+
+
