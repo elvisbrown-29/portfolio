@@ -1345,17 +1345,6 @@ Got it
       }
     });
 
-    // Additional protection against DevTools
-    function detectDevTools() {
-      const widthThreshold = window.outerWidth - window.innerWidth > 160;
-      const heightThreshold = window.outerHeight - window.innerHeight > 160;
-      
-      if (widthThreshold || heightThreshold) {
-        // DevTools is likely open
-        document.body.innerHTML = 'Developer tools detected. This action is not allowed.';
-      }
-    }
-
     // Check periodically
     setInterval(detectDevTools, 1000);
 
@@ -1399,5 +1388,3 @@ Got it
     setInterval(detectDebugger, 1000);
   });
 </script>
-
-
